@@ -1,0 +1,77 @@
+topology:
+  name: "automotive_factory_ot"
+  description: "SCEPTRE network topology for an OT-focused automotive factory."
+
+networks:
+  ot_lan:
+    subnet: "192.168.10.0/24"
+    description: "Operational Technology (OT) LAN for SCADA, HMI, and PLCs."
+  fieldbus:
+    subnet: "192.168.20.0/24"
+    description: "Fieldbus Network connecting PLCs and field devices."
+  management:
+    subnet: "192.168.30.0/24"
+    description: "Engineering Workstation and Management Network."
+
+nodes:
+  engineering_workstation:
+    role: "Engineering Workstation"
+    os: "Ubuntu 20.04"
+    sceptre_main: true  # Hosts SCEPTRE Main
+    networks:
+      - management
+  
+  scada_server:
+    role: "SCADA System"
+    os: "Ubuntu 20.04"
+    networks:
+      - ot_lan
+    services:
+      - modbus_server
+      - dnp3_server
+      - opc_ua_server
+
+  hmi:
+    role: "Human-Machine Interface (HMI)"
+    os: "Windows 10"
+    networks:
+      - ot_lan
+    services:
+      - hmi_client
+  
+  plc_controller:
+    role: "Programmable Logic Controller (PLC)"
+    os: "Debian 11"
+    networks:
+      - fieldbus
+    services:
+      - plc_runtime
+      - modbus_slave
+
+  field_device_1:
+    role: "Sensor / Actuator"
+    os: "Embedded Linux"
+    networks:
+      - fieldbus
+    services:
+      - sensor_service
+      - actuator_service
+
+  field_device_2:
+    role: "Industrial Robot"
+    os: "Embedded Linux"
+    networks:
+      - fieldbus
+    services:
+      - robotic_control
+
+  ot_firewall:
+    role: "Firewall for OT Network"
+    os: "OPNsense"
+    networks:
+      - ot_lan
+      - fieldbus
+      - management
+    services:
+      - firewall
+      - network_filtering
