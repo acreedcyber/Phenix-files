@@ -1,0 +1,97 @@
+apiVersion: phenix.sandia.gov/v1
+kind: Topology
+metadata:
+  name: dallas-ot-factory
+spec:
+  nodes:
+    - general:
+        hostname: eng-ws
+        description: Engineering Workstation
+      hardware:
+        drives:
+          - image: ubuntu.qc2
+        memory: 4096
+        vcpus: 2
+        os_type: linux
+      network:
+        interfaces:
+          - name: IF0
+            address: 192.168.1.10
+            gateway: 192.168.1.1
+            mask: 24
+            vlan: OT
+            proto: static
+      type: VirtualMachine
+
+    - general:
+        hostname: plc-1
+        description: PLC Controller for Assembly Line
+      hardware:
+        drives:
+          - image: ubuntu.qc2
+        memory: 2048
+        vcpus: 2
+        os_type: linux
+      network:
+        interfaces:
+          - name: IF0
+            address: 192.168.1.11
+            gateway: 192.168.1.1
+            mask: 24
+            vlan: OT
+            proto: static
+      type: VirtualMachine
+
+    - general:
+        hostname: plc-2
+        description: PLC Controller for Robotic Arm
+      hardware:
+        drives:
+          - image: ubuntu.qc2
+        memory: 2048
+        vcpus: 2
+        os_type: linux
+      network:
+        interfaces:
+          - name: IF0
+            address: 192.168.1.12
+            gateway: 192.168.1.1
+            mask: 24
+            vlan: OT
+            proto: static
+      type: VirtualMachine
+
+    - general:
+        hostname: hmi-1
+        description: HMI Touchscreen Interface
+      hardware:
+        drives:
+          - image: ubuntu.qc2
+        memory: 2048
+        vcpus: 2
+        os_type: linux
+      network:
+        interfaces:
+          - name: IF0
+            address: 192.168.1.13
+            gateway: 192.168.1.1
+            mask: 24
+            vlan: OT
+            proto: static
+      type: VirtualMachine
+
+    - general:
+        hostname: ot-switch
+        description: OT Layer 2 Switch (simulated)
+      hardware:
+        drives:
+          - image: vyos.qc2
+        os_type: linux
+      network:
+        interfaces:
+          - name: IF0
+            address: 192.168.1.1
+            mask: 24
+            vlan: OT
+            proto: static
+      type: Router
