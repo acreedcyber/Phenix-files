@@ -1,198 +1,149 @@
 apiVersion: phenix.sandia.gov/v1
 kind: Topology
 metadata:
-  name: auto-factory-lab
+  name: PowerGrid
 spec:
   nodes:
-  - general:
-      hostname: hmi-1
-      description: HMI Terminal 1
-    hardware:
-      os_type: linux
-      memory: 2048
-      vcpus: 2
-      drives:
-      - image: ubuntu.qc2
-    network:
-      interfaces:
-      - address: 192.168.100.10
-        mask: 24
-        proto: static
-        type: ethernet
-        vlan: OT
-  - general:
-      hostname: hmi-2
-      description: HMI Terminal 2
-    hardware:
-      os_type: linux
-      memory: 2048
-      vcpus: 2
-      drives:
-      - image: ubuntu.qc2
-    network:
-      interfaces:
-      - address: 192.168.100.11
-        mask: 24
-        proto: static
-        type: ethernet
-        vlan: OT
-  - general:
-      hostname: hmi-3
-      description: HMI Terminal 3
-    hardware:
-      os_type: linux
-      memory: 2048
-      vcpus: 2
-      drives:
-      - image: ubuntu.qc2
-    network:
-      interfaces:
-      - address: 192.168.100.12
-        mask: 24
-        proto: static
-        type: ethernet
-        vlan: OT
-  - general:
-      hostname: hmi-4
-      description: HMI Terminal 4
-    hardware:
-      os_type: linux
-      memory: 2048
-      vcpus: 2
-      drives:
-      - image: ubuntu.qc2
-    network:
-      interfaces:
-      - address: 192.168.100.13
-        mask: 24
-        proto: static
-        type: ethernet
-        vlan: OT
-  - general:
-      hostname: plc-1
-      description: PLC 1
-    hardware:
-      os_type: linux
-      memory: 1024
-      vcpus: 1
-      drives:
-      - image: ubuntu.qc2
-    network:
-      interfaces:
-      - address: 192.168.100.20
-        mask: 24
-        proto: static
-        type: ethernet
-        vlan: OT
-  - general:
-      hostname: plc-2
-      description: PLC 2
-    hardware:
-      os_type: linux
-      memory: 1024
-      vcpus: 1
-      drives:
-      - image: ubuntu.qc2
-    network:
-      interfaces:
-      - address: 192.168.100.21
-        mask: 24
-        proto: static
-        type: ethernet
-        vlan: OT
-  - general:
-      hostname: eng-ws-1
-      description: Engineering Workstation 1
-    hardware:
-      os_type: linux
-      memory: 4096
-      vcpus: 2
-      drives:
-      - image: ubuntu.qc2
-    network:
-      interfaces:
-      - address: 192.168.100.30
-        mask: 24
-        proto: static
-        type: ethernet
-        vlan: OT
-  - general:
-      hostname: eng-ws-2
-      description: Engineering Workstation 2
-    hardware:
-      os_type: linux
-      memory: 4096
-      vcpus: 2
-      drives:
-      - image: ubuntu.qc2
-    network:
-      interfaces:
-      - address: 192.168.100.31
-        mask: 24
-        proto: static
-        type: ethernet
-        vlan: OT
-  - general:
-      hostname: eng-ws-3
-      description: Engineering Workstation 3
-    hardware:
-      os_type: linux
-      memory: 4096
-      vcpus: 2
-      drives:
-      - image: ubuntu.qc2
-    network:
-      interfaces:
-      - address: 192.168.100.32
-        mask: 24
-        proto: static
-        type: ethernet
-        vlan: OT
-  - general:
-      hostname: eng-ws-4
-      description: Engineering Workstation 4
-    hardware:
-      os_type: linux
-      memory: 4096
-      vcpus: 2
-      drives:
-      - image: ubuntu.qc2
-    network:
-      interfaces:
-      - address: 192.168.100.33
-        mask: 24
-        proto: static
-        type: ethernet
-        vlan: OT
-  - general:
-      hostname: ids-ips
-      description: IDS/IPS Sensor
-    hardware:
-      os_type: linux
-      memory: 2048
-      vcpus: 2
-      drives:
-      - image: ubuntu.qc2
-    network:
-      interfaces:
-      - address: 192.168.100.40
-        mask: 24
-        proto: static
-        type: ethernet
-        vlan: OT
-  - general:
-      hostname: historian
-      description: Data Historian Server
-    hardware:
-      os_type: linux
-      memory: 4096
-      vcpus: 2
-      drives:
-      - image: ubuntu.qc2
-    network:
-      interfaces:
-      - address: 192.168.100.50
-        mask: 24
-        proto: static
-        type: ethernet
-        vlan: OT
+    - general:
+        hostname: plc-1
+        description: Primary PLC handling actuator control
+      hardware:
+        os_type: linux
+        memory: 2048
+        vcpus: 2
+        drives:
+          - image: ubuntu.qc2
+      network:
+        interfaces:
+          - name: eth0
+            type: ethernet
+            vlan: OT
+            proto: static
+            address: 10.0.0.10
+            mask: 24
+
+    - general:
+        hostname: plc-2
+        description: Secondary PLC with redundancy
+      hardware:
+        os_type: linux
+        memory: 2048
+        vcpus: 2
+        drives:
+          - image: ubuntu.qc2
+      network:
+        interfaces:
+          - name: eth0
+            type: ethernet
+            vlan: OT
+            proto: static
+            address: 10.0.0.11
+            mask: 24
+
+    - general:
+        hostname: hmi-1
+        description: HMI station 1
+      hardware:
+        os_type: linux
+        memory: 4096
+        vcpus: 2
+        drives:
+          - image: ubuntu.qc2
+      network:
+        interfaces:
+          - name: eth0
+            type: ethernet
+            vlan: OT
+            proto: static
+            address: 10.0.0.20
+            mask: 24
+
+    - general:
+        hostname: hmi-2
+        description: HMI station 2
+      hardware:
+        os_type: linux
+        memory: 4096
+        vcpus: 2
+        drives:
+          - image: ubuntu.qc2
+      network:
+        interfaces:
+          - name: eth0
+            type: ethernet
+            vlan: OT
+            proto: static
+            address: 10.0.0.21
+            mask: 24
+
+    - general:
+        hostname: eng-ws-1
+        description: Engineering Workstation 1
+      hardware:
+        os_type: linux
+        memory: 4096
+        vcpus: 2
+        drives:
+          - image: ubuntu.qc2
+      network:
+        interfaces:
+          - name: eth0
+            type: ethernet
+            vlan: OT
+            proto: static
+            address: 10.0.0.30
+            mask: 24
+
+    - general:
+        hostname: eng-ws-2
+        description: Engineering Workstation 2
+      hardware:
+        os_type: linux
+        memory: 4096
+        vcpus: 2
+        drives:
+          - image: ubuntu.qc2
+      network:
+        interfaces:
+          - name: eth0
+            type: ethernet
+            vlan: OT
+            proto: static
+            address: 10.0.0.31
+            mask: 24
+
+    - general:
+        hostname: historian
+        description: Data Historian server
+      hardware:
+        os_type: linux
+        memory: 2048
+        vcpus: 2
+        drives:
+          - image: ubuntu.qc2
+      network:
+        interfaces:
+          - name: eth0
+            type: ethernet
+            vlan: OT
+            proto: static
+            address: 10.0.0.40
+            mask: 24
+
+    - general:
+        hostname: dmz-fw
+        description: OT Firewall / DMZ
+      hardware:
+        os_type: linux
+        memory: 1024
+        vcpus: 1
+        drives:
+          - image: ubuntu.qc2
+      network:
+        interfaces:
+          - name: eth0
+            type: ethernet
+            vlan: OT
+            proto: static
+            address: 10.0.0.50
+            mask: 24
