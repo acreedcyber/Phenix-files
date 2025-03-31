@@ -9,249 +9,268 @@ spec:
         hostname: hmi-1
       hardware:
         os_type: linux
-        vcpus: 2
         memory: 4096
+        vcpus: 2
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            vlan: OT
-            address: 10.0.0.11
-            mask: 24
             proto: static
+            address: 192.168.100.10
+            gateway: 192.168.100.1
+            mask: 24
+            vlan: OT
 
     - type: VirtualMachine
       general:
         hostname: hmi-2
       hardware:
         os_type: linux
-        vcpus: 2
         memory: 4096
+        vcpus: 2
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            vlan: OT
-            address: 10.0.0.12
-            mask: 24
             proto: static
+            address: 192.168.100.11
+            gateway: 192.168.100.1
+            mask: 24
+            vlan: OT
 
     - type: VirtualMachine
       general:
         hostname: hmi-3
       hardware:
         os_type: linux
-        vcpus: 2
         memory: 4096
+        vcpus: 2
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            vlan: OT
-            address: 10.0.0.13
-            mask: 24
             proto: static
+            address: 192.168.100.12
+            gateway: 192.168.100.1
+            mask: 24
+            vlan: OT
 
     - type: VirtualMachine
       general:
         hostname: hmi-4
       hardware:
         os_type: linux
-        vcpus: 2
         memory: 4096
+        vcpus: 2
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            vlan: OT
-            address: 10.0.0.14
-            mask: 24
             proto: static
+            address: 192.168.100.13
+            gateway: 192.168.100.1
+            mask: 24
+            vlan: OT
 
     - type: VirtualMachine
       general:
         hostname: plc-1
       hardware:
         os_type: linux
-        vcpus: 2
         memory: 2048
+        vcpus: 1
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            vlan: OT
-            address: 10.0.0.21
-            mask: 24
             proto: static
+            address: 192.168.100.20
+            gateway: 192.168.100.1
+            mask: 24
+            vlan: OT
 
     - type: VirtualMachine
       general:
         hostname: plc-2
       hardware:
         os_type: linux
-        vcpus: 2
         memory: 2048
+        vcpus: 1
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            vlan: OT
-            address: 10.0.0.22
-            mask: 24
             proto: static
+            address: 192.168.100.21
+            gateway: 192.168.100.1
+            mask: 24
+            vlan: OT
 
     - type: VirtualMachine
       general:
         hostname: eng-ws-1
       hardware:
         os_type: linux
-        vcpus: 2
         memory: 4096
+        vcpus: 2
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            vlan: OT
-            address: 10.0.0.31
-            mask: 24
             proto: static
+            address: 192.168.100.30
+            gateway: 192.168.100.1
+            mask: 24
+            vlan: OT
 
     - type: VirtualMachine
       general:
         hostname: eng-ws-2
       hardware:
         os_type: linux
-        vcpus: 2
         memory: 4096
+        vcpus: 2
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            vlan: OT
-            address: 10.0.0.32
-            mask: 24
             proto: static
+            address: 192.168.100.31
+            gateway: 192.168.100.1
+            mask: 24
+            vlan: OT
 
     - type: VirtualMachine
       general:
         hostname: eng-ws-3
       hardware:
         os_type: linux
-        vcpus: 2
         memory: 4096
+        vcpus: 2
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            vlan: OT
-            address: 10.0.0.33
-            mask: 24
             proto: static
+            address: 192.168.100.32
+            gateway: 192.168.100.1
+            mask: 24
+            vlan: OT
 
     - type: VirtualMachine
       general:
         hostname: eng-ws-4
       hardware:
         os_type: linux
-        vcpus: 2
         memory: 4096
+        vcpus: 2
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            vlan: OT
-            address: 10.0.0.34
-            mask: 24
             proto: static
-
-    - type: VirtualMachine
-      general:
-        hostname: ids-ips
-      hardware:
-        os_type: linux
-        vcpus: 2
-        memory: 4096
-        drives:
-          - image: ubuntu.qc2
-      network:
-        interfaces:
-          - name: eth0
-            type: ethernet
-            vlan: OT
-            address: 10.0.0.40
+            address: 192.168.100.33
+            gateway: 192.168.100.1
             mask: 24
-            proto: static
+            vlan: OT
 
     - type: VirtualMachine
       general:
         hostname: historian
       hardware:
         os_type: linux
-        vcpus: 2
         memory: 4096
+        vcpus: 2
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            vlan: OT
-            address: 10.0.0.50
-            mask: 24
             proto: static
+            address: 192.168.100.40
+            gateway: 192.168.100.1
+            mask: 24
+            vlan: OT
 
     - type: VirtualMachine
       general:
-        hostname: dmz-fw
+        hostname: ids-ips
       hardware:
         os_type: linux
+        memory: 4096
         vcpus: 2
-        memory: 2048
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            vlan: OT
-            address: 10.0.0.100
-            mask: 24
             proto: static
+            address: 192.168.100.50
+            gateway: 192.168.100.1
+            mask: 24
+            vlan: OT
+
+    - type: VirtualMachine
+      general:
+        hostname: fw-dmz
+      hardware:
+        os_type: linux
+        memory: 2048
+        vcpus: 1
+        drives:
+          - image: ubuntu.qc2
+      network:
+        interfaces:
+          - name: eth0
+            type: ethernet
+            proto: static
+            address: 192.168.100.60
+            mask: 24
+            vlan: OT
+          - name: eth1
+            type: ethernet
+            proto: static
+            address: 192.168.200.1
+            mask: 24
+            vlan: DMZ
 
     - type: VirtualMachine
       general:
         hostname: dmz-server
       hardware:
         os_type: linux
+        memory: 4096
         vcpus: 2
-        memory: 2048
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            vlan: OT
-            address: 10.0.0.101
-            mask: 24
             proto: static
+            address: 192.168.200.10
+            gateway: 192.168.200.1
+            mask: 24
+            vlan: DMZ
