@@ -1,282 +1,257 @@
 apiVersion: phenix.sandia.gov/v1
 kind: Topology
 metadata:
-  name: automotive_factory_lab
+  name: dallas-instruments-ot
 spec:
   nodes:
-    # HMI Terminals
-    - general:
+    - type: VirtualMachine
+      general:
         hostname: hmi-1
-        description: HMI Terminal 1
       hardware:
         os_type: linux
-        memory: 4096
         vcpus: 2
+        memory: 4096
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            proto: static
             vlan: OT
-            address: 192.168.100.10
+            address: 10.0.0.11
             mask: 24
-            gateway: 192.168.100.1
+            proto: static
 
-    - general:
+    - type: VirtualMachine
+      general:
         hostname: hmi-2
-        description: HMI Terminal 2
       hardware:
         os_type: linux
-        memory: 4096
         vcpus: 2
+        memory: 4096
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            proto: static
             vlan: OT
-            address: 192.168.100.11
+            address: 10.0.0.12
             mask: 24
-            gateway: 192.168.100.1
+            proto: static
 
-    - general:
+    - type: VirtualMachine
+      general:
         hostname: hmi-3
-        description: HMI Terminal 3
       hardware:
         os_type: linux
-        memory: 4096
         vcpus: 2
+        memory: 4096
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            proto: static
             vlan: OT
-            address: 192.168.100.12
+            address: 10.0.0.13
             mask: 24
-            gateway: 192.168.100.1
+            proto: static
 
-    - general:
+    - type: VirtualMachine
+      general:
         hostname: hmi-4
-        description: HMI Terminal 4
       hardware:
         os_type: linux
-        memory: 4096
         vcpus: 2
+        memory: 4096
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            proto: static
             vlan: OT
-            address: 192.168.100.13
+            address: 10.0.0.14
             mask: 24
-            gateway: 192.168.100.1
+            proto: static
 
-    # PLCs
-    - general:
+    - type: VirtualMachine
+      general:
         hostname: plc-1
-        description: PLC Unit 1
       hardware:
         os_type: linux
+        vcpus: 2
         memory: 2048
-        vcpus: 1
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            proto: static
             vlan: OT
-            address: 192.168.100.20
+            address: 10.0.0.21
             mask: 24
-            gateway: 192.168.100.1
+            proto: static
 
-    - general:
+    - type: VirtualMachine
+      general:
         hostname: plc-2
-        description: PLC Unit 2
       hardware:
         os_type: linux
+        vcpus: 2
         memory: 2048
-        vcpus: 1
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            proto: static
             vlan: OT
-            address: 192.168.100.21
+            address: 10.0.0.22
             mask: 24
-            gateway: 192.168.100.1
+            proto: static
 
-    # Engineering Workstations
-    - general:
+    - type: VirtualMachine
+      general:
         hostname: eng-ws-1
-        description: Engineering Workstation 1
       hardware:
         os_type: linux
-        memory: 4096
         vcpus: 2
+        memory: 4096
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            proto: static
             vlan: OT
-            address: 192.168.100.30
+            address: 10.0.0.31
             mask: 24
-            gateway: 192.168.100.1
+            proto: static
 
-    - general:
+    - type: VirtualMachine
+      general:
         hostname: eng-ws-2
-        description: Engineering Workstation 2
       hardware:
         os_type: linux
-        memory: 4096
         vcpus: 2
+        memory: 4096
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            proto: static
             vlan: OT
-            address: 192.168.100.31
+            address: 10.0.0.32
             mask: 24
-            gateway: 192.168.100.1
+            proto: static
 
-    - general:
+    - type: VirtualMachine
+      general:
         hostname: eng-ws-3
-        description: Engineering Workstation 3
       hardware:
         os_type: linux
-        memory: 4096
         vcpus: 2
+        memory: 4096
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            proto: static
             vlan: OT
-            address: 192.168.100.32
+            address: 10.0.0.33
             mask: 24
-            gateway: 192.168.100.1
+            proto: static
 
-    - general:
+    - type: VirtualMachine
+      general:
         hostname: eng-ws-4
-        description: Engineering Workstation 4
       hardware:
         os_type: linux
-        memory: 4096
         vcpus: 2
+        memory: 4096
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            proto: static
             vlan: OT
-            address: 192.168.100.33
+            address: 10.0.0.34
             mask: 24
-            gateway: 192.168.100.1
+            proto: static
 
-    # IDS/IPS
-    - general:
-        hostname: ids
-        description: IDS/IPS System
+    - type: VirtualMachine
+      general:
+        hostname: ids-ips
       hardware:
         os_type: linux
-        memory: 4096
         vcpus: 2
+        memory: 4096
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            proto: static
             vlan: OT
-            address: 192.168.100.40
+            address: 10.0.0.40
             mask: 24
-            gateway: 192.168.100.1
+            proto: static
 
-    # Historian
-    - general:
+    - type: VirtualMachine
+      general:
         hostname: historian
-        description: Data Historian Server
       hardware:
         os_type: linux
+        vcpus: 2
         memory: 4096
-        vcpus: 2
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            proto: static
             vlan: OT
-            address: 192.168.100.50
+            address: 10.0.0.50
             mask: 24
-            gateway: 192.168.100.1
+            proto: static
 
-    # DMZ Server
-    - general:
+    - type: VirtualMachine
+      general:
         hostname: dmz-fw
-        description: DMZ Firewall
       hardware:
         os_type: linux
-        memory: 2048
         vcpus: 2
+        memory: 2048
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            proto: static
             vlan: OT
-            address: 192.168.100.100
+            address: 10.0.0.100
             mask: 24
-            gateway: 192.168.100.1
-          - name: eth1
-            type: ethernet
             proto: static
-            vlan: DMZ
-            address: 10.10.10.1
-            mask: 24
 
-    - general:
+    - type: VirtualMachine
+      general:
         hostname: dmz-server
-        description: DMZ Service Host
       hardware:
         os_type: linux
-        memory: 2048
         vcpus: 2
+        memory: 2048
         drives:
           - image: ubuntu.qc2
       network:
         interfaces:
           - name: eth0
             type: ethernet
-            proto: static
-            vlan: DMZ
-            address: 10.10.10.2
+            vlan: OT
+            address: 10.0.0.101
             mask: 24
+            proto: static
