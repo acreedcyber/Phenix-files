@@ -1,167 +1,151 @@
 apiVersion: phenix.sandia.gov/v1
 kind: Topology
 metadata:
-  name: dallas-instruments-ot
+  name: PowerGridLab
 spec:
   nodes:
-  - general:
-      hostname: eng-ws
-      description: Engineering Workstation (SCEPTRE control)
-    hardware:
-      vcpus: 2
-      memory: 4096
-      drives:
-        - image: ubuntu.qc2
-    network:
-      interfaces:
-        - name: eth0
-          type: ethernet
-          address: 10.0.0.2
-          gateway: 10.0.0.1
-          mask: 24
-          proto: static
-          vlan: OT
-    type: VirtualMachine
+    - general:
+        hostname: eng-ws
+        description: Engineering Workstation (with SCEPTRE)
+      hardware:
+        os_type: linux
+        memory: 4096
+        vcpus: 2
+        drives:
+          - image: ubuntu.qc2
+      network:
+        interfaces:
+          - name: eth0
+            address: 10.0.0.10
+            mask: 24
+            gateway: 10.0.0.1
+            proto: static
+            type: ethernet
+            vlan: OT
+      type: VirtualMachine
 
-  - general:
-      hostname: plc-line1
-      description: PLC controlling Line 1
-    hardware:
-      vcpus: 2
-      memory: 4096
-      drives:
-        - image: ubuntu.qc2
-    network:
-      interfaces:
-        - name: eth0
-          type: ethernet
-          address: 10.0.0.3
-          gateway: 10.0.0.1
-          mask: 24
-          proto: static
-          vlan: OT
-    type: VirtualMachine
+    - general:
+        hostname: hmi
+        description: Human Machine Interface
+      hardware:
+        os_type: linux
+        memory: 4096
+        vcpus: 2
+        drives:
+          - image: ubuntu.qc2
+      network:
+        interfaces:
+          - name: eth0
+            address: 10.0.0.11
+            mask: 24
+            gateway: 10.0.0.1
+            proto: static
+            type: ethernet
+            vlan: OT
+      type: VirtualMachine
 
-  - general:
-      hostname: plc-line2
-      description: PLC controlling Line 2
-    hardware:
-      vcpus: 2
-      memory: 4096
-      drives:
-        - image: ubuntu.qc2
-    network:
-      interfaces:
-        - name: eth0
-          type: ethernet
-          address: 10.0.0.4
-          gateway: 10.0.0.1
-          mask: 24
-          proto: static
-          vlan: OT
-    type: VirtualMachine
+    - general:
+        hostname: plc-1
+        description: PLC 1
+      hardware:
+        os_type: linux
+        memory: 2048
+        vcpus: 1
+        drives:
+          - image: ubuntu.qc2
+      network:
+        interfaces:
+          - name: eth0
+            address: 10.0.0.20
+            mask: 24
+            gateway: 10.0.0.1
+            proto: static
+            type: ethernet
+            vlan: OT
+      type: VirtualMachine
 
-  - general:
-      hostname: hmi-station
-      description: Human Machine Interface
-    hardware:
-      vcpus: 2
-      memory: 4096
-      drives:
-        - image: ubuntu.qc2
-    network:
-      interfaces:
-        - name: eth0
-          type: ethernet
-          address: 10.0.0.5
-          gateway: 10.0.0.1
-          mask: 24
-          proto: static
-          vlan: OT
-    type: VirtualMachine
+    - general:
+        hostname: plc-2
+        description: PLC 2
+      hardware:
+        os_type: linux
+        memory: 2048
+        vcpus: 1
+        drives:
+          - image: ubuntu.qc2
+      network:
+        interfaces:
+          - name: eth0
+            address: 10.0.0.21
+            mask: 24
+            gateway: 10.0.0.1
+            proto: static
+            type: ethernet
+            vlan: OT
+      type: VirtualMachine
 
-  - general:
-      hostname: historian
-      description: Historian System (OT-side)
-    hardware:
-      vcpus: 2
-      memory: 4096
-      drives:
-        - image: ubuntu.qc2
-    network:
-      interfaces:
-        - name: eth0
-          type: ethernet
-          address: 10.0.0.6
-          gateway: 10.0.0.1
-          mask: 24
-          proto: static
-          vlan: OT
-    type: VirtualMachine
+    - general:
+        hostname: rtu
+        description: Remote Terminal Unit
+      hardware:
+        os_type: linux
+        memory: 2048
+        vcpus: 1
+        drives:
+          - image: ubuntu.qc2
+      network:
+        interfaces:
+          - name: eth0
+            address: 10.0.0.30
+            mask: 24
+            gateway: 10.0.0.1
+            proto: static
+            type: ethernet
+            vlan: OT
+      type: VirtualMachine
 
-  - general:
-      hostname: dmz-fw
-      description: Firewall between OT and IT/DMZ zones
-    hardware:
-      vcpus: 2
-      memory: 4096
-      drives:
-        - image: ubuntu.qc2
-    network:
-      interfaces:
-        - name: eth0
-          type: ethernet
-          address: 10.0.0.10
-          mask: 24
-          proto: static
-          vlan: OT
-        - name: eth1
-          type: ethernet
-          address: 10.0.1.1
-          mask: 24
-          proto: static
-          vlan: DMZ
-    type: VirtualMachine
+    - general:
+        hostname: historian
+        description: Historian Server
+      hardware:
+        os_type: linux
+        memory: 4096
+        vcpus: 2
+        drives:
+          - image: ubuntu.qc2
+      network:
+        interfaces:
+          - name: eth0
+            address: 10.0.1.10
+            mask: 24
+            gateway: 10.0.1.1
+            proto: static
+            type: ethernet
+            vlan: DMZ
+      type: VirtualMachine
 
-  - general:
-      hostname: scada-server
-      description: SCADA Server
-    hardware:
-      vcpus: 2
-      memory: 4096
-      drives:
-        - image: ubuntu.qc2
-    network:
-      interfaces:
-        - name: eth0
-          type: ethernet
-          address: 10.0.0.7
-          gateway: 10.0.0.1
-          mask: 24
-          proto: static
-          vlan: OT
-    type: VirtualMachine
-
-  - general:
-      hostname: ot-router
-      description: Router for OT subnet
-    hardware:
-      vcpus: 1
-      memory: 2048
-      drives:
-        - image: vyos.qc2
-    network:
-      interfaces:
-        - name: eth0
-          type: ethernet
-          address: 10.0.0.1
-          mask: 24
-          proto: static
-          vlan: OT
-        - name: eth1
-          type: ethernet
-          address: 10.0.1.254
-          mask: 24
-          proto: static
-          vlan: DMZ
-    type: Router
+    - general:
+        hostname: dmz-fw
+        description: DMZ Firewall/Gateway
+      hardware:
+        os_type: linux
+        memory: 2048
+        vcpus: 1
+        drives:
+          - image: ubuntu.qc2
+      network:
+        interfaces:
+          - name: eth0
+            address: 10.0.1.1
+            mask: 24
+            gateway: 10.0.1.254
+            proto: static
+            type: ethernet
+            vlan: DMZ
+          - name: eth1
+            address: 10.0.0.1
+            mask: 24
+            proto: static
+            type: ethernet
+            vlan: OT
+      type: VirtualMachine
