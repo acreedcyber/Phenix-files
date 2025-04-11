@@ -2,6 +2,8 @@ apiVersion: phenix.sandia.gov/v1
 kind: Scenario
 metadata:
   name: minimal-scenario
+  annotations:
+    topology: minimal-modbus-demo
   created: ""
   updated: ""
 spec:
@@ -10,11 +12,11 @@ spec:
       metadata:
         provider:
           - hostname: rtu-1
-            type: test                         # tells Bennu to use bennu-test-ep-server
+            type: test
         field_devices:
           - hostname: rtu-1
             type: fd-server
-            provider: rtu-1                    # uses itself as provider
+            provider: rtu-1
             infrastructure: power-transmission
             cycle_time: 1.0
             modbus:
