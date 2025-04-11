@@ -2,21 +2,17 @@ apiVersion: phenix.sandia.gov/v1
 kind: Scenario
 metadata:
   name: minimal-scenario
-  created: ""
-  updated: ""
   annotations:
     topology: minimal-modbus-demo
+  created: ""
+  updated: ""
 spec:
   apps:
     sceptre:
       metadata:
-        provider:
-          - hostname: rtu-1
-            type: test
         field_devices:
           - hostname: rtu-1
             type: fd-server
-            provider: rtu-1
             infrastructure: power-transmission
             cycle_time: 1.0
             modbus:
