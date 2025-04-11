@@ -1,0 +1,40 @@
+apiVersion: phenix.sandia.gov/v1
+kind: Scenario
+metadata:
+  name: dallas-instruments-ot-scenario
+  annotations:
+    topology: dallas-instruments-ot
+spec:
+  apps:
+    sceptre:
+      metadata:
+        field_devices:
+          - hostname: plc-1
+            type: fd-server
+            infrastructure: batch-process
+            cycle_time: 1.0
+            modbus:
+              - name: temperature
+                type: temperature
+              - name: pressure
+                type: pressure
+              - name: valve_open
+                type: valve
+          - hostname: plc-2
+            type: fd-server
+            infrastructure: batch-process
+            cycle_time: 1.0
+            modbus:
+              - name: flow_rate
+                type: flow
+              - name: tank_level
+                type: level
+              - name: pump_on
+                type: pump
+        hmi:
+          - hostname: hmi-1
+          - hostname: hmi-2
+          - hostname: hmi-3
+          - hostname: hmi-4
+        historian:
+          - hostname: historian
