@@ -8,7 +8,7 @@ metadata:
     topology: minimal-modbus-demo
 spec:
   apps:
-    - name: sceptre
+    sceptre:
       metadata:
         field_devices:
           - hostname: rtu-1
@@ -20,3 +20,4 @@ spec:
                 type: bus
               - name: Breaker12_Status
                 type: breaker
+
