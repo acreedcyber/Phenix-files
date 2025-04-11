@@ -1,0 +1,51 @@
+apiVersion: phenix.sandia.gov/v1
+kind: Topology
+metadata:
+  name: minimal-modbus-demo
+  created: ""
+  updated: ""
+spec:
+  nodes:
+    - type: VirtualMachine
+      general:
+        hostname: rtu-1
+        description: "Bennu RTU with Modbus"
+      hardware:
+        os_type: linux
+        vcpus: 1
+        memory: 1024
+        drives:
+          - image: bennu.qc2
+      network:
+        interfaces:
+          - name: exp
+            vlan: EXP
+            address: 192.168.100.10
+            mask: 24
+            proto: static
+            type: ethernet
+          - name: mgmt
+            vlan: MGMT
+            address: 172.16.0.101
+            mask: 16
+            proto: static
+            type: ethernet
+
+    - type: VirtualMachine
+      general:
+        hostname: attacker-1
+        description: "Linux attacker box with nmap"
+      hardware:
+        os_type: linux
+        vcpus: 1
+        memory: 1024
+        drives:
+          - image: ubuntu.qc2
+      network:
+        interfaces:
+          - name: exp
+            vlan: EXP
+            address: 192.168.100.20
+            mask: 24
+            proto: static
+            type: ethernet
